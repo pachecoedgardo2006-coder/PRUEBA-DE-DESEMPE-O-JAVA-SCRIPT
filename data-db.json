@@ -1,0 +1,60 @@
+{
+  "reservations": [
+    {
+      "id": "1",
+      "userId": 2,
+      "username": "user1",
+      "space": "Salas de reuniones",
+      "date": "2026-06-25",
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "reason": "Reunión de desarrollo",
+      "status": "Pendiente"
+    },
+    {
+      "id": "2",
+      "userId": 3,
+      "username": "user2",
+      "space": "Auditorios",
+      "date": "2026-06-18",
+      "startTime": "14:00",
+      "endTime": "16:00",
+      "reason": "Inducción nuevos colaboradores",
+      "status": "Aprobada"
+    },
+    {
+      "space": "Espacios de coworking",
+      "date": "2026-06-25",
+      "startTime": "01:00",
+      "endTime": "02:00",
+      "reason": "fiesta\n",
+      "status": "Pendiente",
+      "userId": "admin",
+      "username": "Administrador",
+      "id": "bA4bYzTvYLU"
+    },
+    {
+      "space": "Salas de reuniones",
+      "date": "2026-06-25",
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "reason": "otra fiesta",
+      "status": "Pendiente",
+      "userId": "admin",
+      "username": "Administrador",
+      "id": "Sop9CxuMBLQ"
+    },
+    {
+      "space": "Espacios de coworking",
+      "date": "2026-06-30",
+      "startTime": "08:12",
+      "endTime": "00:13",
+      "reason": "rumbear",
+      "status": "Aprobada",
+      "userId": "d8nHBYLOjL8",
+      "username": "edgardo",
+      "id": "NW7fXl-pyuU"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

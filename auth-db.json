@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin1",
+      "password": "password123",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "username": "user1",
+      "password": "password123",
+      "role": "user"
+    },
+    {
+      "id": "3",
+      "username": "user2",
+      "password": "password123",
+      "role": "user"
+    },
+    {
+      "username": "edgardo",
+      "password": "password123",
+      "role": "user",
+      "id": "d8nHBYLOjL8"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
