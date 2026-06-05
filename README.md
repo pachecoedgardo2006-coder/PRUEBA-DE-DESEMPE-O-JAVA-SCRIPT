@@ -4,6 +4,17 @@ A Single Page Application (SPA) for managing and reserving shared spaces within 
 
 ---
 
+## tegnologies Used
+
+-Vanilla JavaScript (Es Modules) => Core aplication logic
+-vite => Dev server and bundler
+-Axios => HTTP client for API Request
+- JSON SERVER => Mock rest Api (auth - data)
+- SSCS => Styling
+
+---
+
+
 ## Description
 
 This platform allows employees to reserve different shared spaces (Private offices, Meeting rooms, Coworking spaces, and Auditoriums) while preventing conflicts through strict real-time schedule validation. Authentication and reservation data are decoupled into two separate mock JSON Server instances.
@@ -67,6 +78,9 @@ Ticket-managementJS/
    * Authentication Server on http://localhost:3001
    * Data Server (Reservations) on http://localhost:3002
    * Frontend Development Server (Vite) on http://localhost:5173
+
+
+   
 ## Test Credentials
 | User | Password | Role | Permissions |
 |---|---|---|---|
