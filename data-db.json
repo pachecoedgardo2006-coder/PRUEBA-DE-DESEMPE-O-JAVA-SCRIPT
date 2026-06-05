@@ -1,16 +1,6 @@
 {
   "reservations": [
-    {
-      "space": "Private Offices",
-      "date": "2026-06-18",
-      "startTime": "07:55",
-      "endTime": "07:53",
-      "reason": "hola como estas",
-      "status": "Cancelled",
-      "userId": "admin",
-      "username": "Administrator",
-      "id": "CQiX0kCXlww"
-    }
+    
   ],
   "$schema": "./node_modules/json-server/schema.json"
 }

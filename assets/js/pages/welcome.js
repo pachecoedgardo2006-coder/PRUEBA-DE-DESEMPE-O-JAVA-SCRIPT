@@ -7,9 +7,9 @@ export async function renderWelcome() {
 
     container.innerHTML = `
         <div class="welcome-container">
-            <h1>Sistema de Gestión de Tickets</h1>
-            <p>Bienvenido a la plataforma de soporte técnico.</p>
-            ${!session ? '<button id="btn-goto-login">Ir al Login</button>' : '<button id="btn-goto-dash">Ir a mi Panel</button>'}
+            <h1>SPACE RESERVATION SYSTEM</h1>
+            <p>WELCOME TO THE PLATAFORM FOR SUPPORT RESERVATIONS.</p>
+            ${!session ? '<button id="btn-goto-login">Ir al Login</button>' : '<button id="btn-goto-dash">Go to your view</button>'}
         </div>
     `;
 
@@ -17,7 +17,7 @@ export async function renderWelcome() {
         document.getElementById('btn-goto-login').addEventListener('click', () => navigateTo('/login'));
     } else {
         document.getElementById('btn-goto-dash').addEventListener('click', () => {
-            const path = session.role === 'admin' ? '/admin' : session.role === 'tecnico' ? '/tech' : '/client';
+            const path = session.role === 'admin' ? '/admin' : '/client';
             navigateTo(path);
         });
     }
