@@ -1,4 +1,3 @@
-markdown
 # Space Reservation System
 
 A Single Page Application (SPA) for managing and reserving shared spaces within the company, built with Vanilla JavaScript and a role-based access control system (`admin` and `user`).
