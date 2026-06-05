@@ -6,22 +6,23 @@ export async function renderClient() {
     const container = document.getElementById('content');
     const session = getSession();
 
+    // UI Strings translated to English
     container.innerHTML = `
-        <h2>Panel de Reservas (Usuario: ${session.username})</h2>
+        <h2>Reservation Panel (User: ${session.username})</h2>
         <div id="form-container"></div>
-        <h3>Historial de mis Reservas</h3>
+        <h3>My Reservation History</h3>
         <table border="1" style="width:100%; border-collapse: collapse; margin-top:10px;">
             <thead>
                 <tr>
-                    <th>Espacio</th>
-                    <th>Fecha</th>
-                    <th>Horario</th>
-                    <th>Motivo</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
+                    <th>Space</th>
+                    <th>Date</th>
+                    <th>Time Slot</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="reservations-list">Cargando tus reservas...</tbody>
+            <tbody id="reservations-list">Loading your reservations...</tbody>
         </table>
     `;
 
@@ -31,14 +32,14 @@ export async function renderClient() {
     async function loadDashboard() {
         const allReservations = await reservationService.getAll();
         
-        // Regla: Ver únicamente sus propias reservas
+        // Rule: View only your own reservations
         const myReservations = allReservations.filter(r => r.userId == session.id);
 
-        // Renderizar formulario limpio para crear una nueva reserva
+        // Render clean form to create a new reservation
         formContainer.innerHTML = renderReservationForm(null, 'user');
         
         setupFormSubmit(async (data) => {
-            // Regla de Negocio: No duplicados para el mismo espacio, fecha y horario coincidente
+            // Business Rule: No duplicates for the same space, date, and overlapping time
             const isDuplicate = allReservations.some(r => 
                 r.space === data.space && 
                 r.date === data.date && 
@@ -47,13 +48,13 @@ export async function renderClient() {
             );
 
             if (isDuplicate) {
-                alert("Error: Este espacio ya se encuentra reservado en el horario seleccionado.");
+                alert("Error: This space is already reserved for the selected time slot.");
                 return;
             }
 
             const newReservation = { 
                 ...data, 
-                status: 'Pendiente', 
+                status: 'Pending', // Translated default status
                 userId: session.id, 
                 username: session.username 
             };
@@ -61,7 +62,7 @@ export async function renderClient() {
             loadDashboard();
         });
 
-        // Listar los datos en formato de filas estables
+        // List data in stable row format
         listContainer.innerHTML = myReservations.map(r => `
             <tr>
                 <td>${r.space}</td>
@@ -70,13 +71,13 @@ export async function renderClient() {
                 <td>${r.reason}</td>
                 <td><strong>${r.status}</strong></td>
                 <td>
-                    ${r.status === 'Pendiente' ? `<button class="btn-edit" data-id="${r.id}">Editar</button>` : ''}
-                    ${r.status === 'Aprobada' || r.status === 'Pendiente' ? `<button class="btn-cancel" data-id="${r.id}">Cancelar</button>` : ''}
+                    ${r.status === 'Pending' ? `<button class="btn-edit" data-id="${r.id}">Edit</button>` : ''}
+                    ${(r.status === 'Approved' || r.status === 'Pending') ? `<button class="btn-cancel" data-id="${r.id}">Cancel</button>` : ''}
                 </td>
             </tr>
-        `).join('') || '<tr><td colspan="6">No tienes reservas registradas actualmente.</td></tr>';
+        `).join('') || '<tr><td colspan="6">You currently have no registered reservations.</td></tr>';
 
-        // Manejo de eventos dinámicos para Editar
+        // Dynamic event handling for Edit
         listContainer.querySelectorAll('.btn-edit').forEach(btn => {
             btn.addEventListener('click', () => {
                 const resId = btn.getAttribute('data-id');
@@ -90,13 +91,14 @@ export async function renderClient() {
             });
         });
 
-        // Manejo de eventos dinámicos para Cancelar
+        // Dynamic event handling for Cancel
         listContainer.querySelectorAll('.btn-cancel').forEach(btn => {
             btn.addEventListener('click', async () => {
                 const resId = btn.getAttribute('data-id');
                 const resToCancel = myReservations.find(r => r.id == resId);
-                if (confirm("¿Estás seguro de que deseas cancelar esta reserva?")) {
-                    await reservationService.update(resId, { ...resToCancel, status: 'Cancelada' });
+                if (confirm("Are you sure you want to cancel this reservation?")) {
+                    // Note: Ensure your backend/database accepts 'Cancelled' if you change the string here
+                    await reservationService.update(resId, { ...resToCancel, status: 'Cancelled' }); 
                     loadDashboard();
                 }
             });
@@ -104,4 +106,4 @@ export async function renderClient() {
     }
 
     await loadDashboard();
-}
+}   

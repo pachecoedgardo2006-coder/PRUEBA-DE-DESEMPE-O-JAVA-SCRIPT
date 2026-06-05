@@ -5,13 +5,11 @@ export async function loadNavbar() {
     const navbar = document.getElementById("navbar");
     const session = getSession();
 
-    let navLinks = "<h1>RIWI Technical support</h1>";
+    let navLinks = "<h1>RIWI Reservation Management</h1>";
 
     if (session) {
         if (session.role === "admin")
             navLinks += `<a href="/admin" data-link>Admin Panel</a>`;
-        if (session.role === "tech")
-            navLinks += `<a href="/tech" data-link>Technical Panel</a>`;
         if (session.role === "client")
             navLinks += `<a href="/client" data-link>Mis Tickets (Cliente)</a>`;
 
